@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>On Certificates</title>
+  <meta name="description" content="This post originally appeared on my Squarespace blog. Reformatted for clarity.">
+  
+  <meta name="author" content="Mike Muir">
+  <meta name="copyright" content="&copy; Mike Muir 2025">
+  
+
+  <!-- External libraries -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/monokai-sublime.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css">
+
+  <!-- Favicon and other icons (made with http://www.favicon-generator.org/) -->
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  
+  <!-- Facebook OGP cards -->
+  <meta property="og:description" content="This post originally appeared on my Squarespace blog. Reformatted for clarity." />
+  <meta property="og:url" content="/tech/2014/05/11/on-certificates.html">
+  <meta property="og:site_name" content="MuirSandwich" />
+  <meta property="og:title" content="On Certificates" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/assets/logo.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="612" />
+  <meta property="og:image:height" content="605" />
+  
+
+  
+  <!-- Twitter: card tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="On Certificates">
+  <meta name="twitter:description" content="This post originally appeared on my Squarespace blog. Reformatted for clarity.">
+  <meta name="twitter:image" content="/assets/logo.png">
+  <meta name="twitter:url" content="/tech/2014/05/11/on-certificates.html">
+  
+
+  
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="/tech/2014/05/11/on-certificates.html">
+	<link rel="alternate" type="application/rss+xml" title="MuirSandwich" href="/feed.xml" />
+	
+	<!-- Tooltips -->
+	<script type="text/javascript">
+		window.tooltips = []
+	</script>
+</head>
+
+
+  <body>
+
+    <header class="navigation" role="banner">
+  <div class="navigation-wrapper">
+    <a href="/" class="logo">
+      
+      <img src="/assets/logo.png" alt="MuirSandwich">
+      
+    </a>
+    <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <nav role="navigation">
+      <ul id="js-navigation-menu" class="navigation-menu show">
+				
+	
+	<li class="nav-link"><a href="/about/">About</a>
+	
+
+	
+
+	
+
+	
+	<li class="nav-link"><a href="/posts/">Posts</a>
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+        <div class="post">
+
+<div class="post-header-container " >
+  <div class="scrim ">
+    <header class="post-header">
+      <h1 class="title">On Certificates</h1>
+      <p class="info">by <strong>Mike Muir</strong></p>
+    </header>
+  </div>
+</div>
+
+<div class="wrapper">
+
+ <span class="page-divider">
+  <span class="one"></span>
+  <span class="two"></span>
+</span>
+ 
+
+<section class="post-meta">
+  <div class="post-date">May 11, 2014</div>
+  <div class="post-categories">
+  in 
+    
+    <a href="/category/Tech">Tech</a>
+    
+  
+  </div>
+</section>
+
+<article class="post-content">
+  <p><em>This post originally appeared on my Squarespace blog. Reformatted for clarity.</em></p>
+
+<p>So I wrote this for CR as a piece to explain the basics of Certificates.  Obviously, if you’ve ever attempted to create and embed a certificate into a web service, its not the easiest thing in the world…</p>
+
+<hr />
+
+<p>Just about everyone has at least heard about the recent Heartbleed bug that was scouring the internet a month ago.  By this time, there is probably a good chance that all of the major internet services that you have been using have already patched themselves to avoid any attacks by the OpenSSL vector.  However, how much do you really know about what is happening behind the scenes when you have a secure connection to your favorite webmail or social networking site?  That little lock icon you see in your web browser is more than just an icon, it is a notification that the site you are using is secured by an SSL Certificate.  But what are those certificates good for?</p>
+
+<p>SSL Certificates were developed to create secure connections between computers.  Those connections are used to transfer data back and forth in an encrypted state, to avoid prying eyes from being able to view the data that you are working with.  However, it is also used to establish trust between who you are talking to.  Would you feel comfortable writing down your banking info on a sticky note and handing it off to a random person on the street and asking them to bring it to your coworker across town? Probably not.</p>
+
+<p>This is one of the benefits of a proper SSL Certificate.  Not only does it create that necessary encrypted state, but it also establishes a chain of trust, so you know that the remote computer/server you are working with is the correct one you are intending to talk to.</p>
+
+<p>A certificate is a small file that gets transferred along with the data you are sending to the remote server.  It has information embedded in it that verifies certain details in regards to the identity of the sender.  To make sure that the certificate is valid, it is signed by an independent third party, called a Certificate Authority.  To get a valid, signed certificate, a company submits a file they created (a Certificate Signing Request) along with valid information about their business that the CA verifies.  Once verified, the CA replies back to the CSR with a valid certificate that the company embeds into their server.</p>
+
+<p>Naturally, how can you trust the Certificate Authority?  Luckily, the manufacturer of your operating system (Apple, Microsoft, etc) has already installed a number of root certificates on your computer that pre-validated hundreds of various Certificate Authorities across the world.</p>
+
+<p>So how do you know you have connected securely with Bank of America, or Facebook?  Look in your web browser and you should see a lock icon near the URL.  That means it is connected via an encrypted connection called SSL, and if you click the icon, it would come up with information about the embedded certificate, showing you the valid information that the Certificate Authority already vetted for you.  Alternatively, check that the website’s URL has an https appended to the front of it:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>https://www.facebook.com
+</code></pre></div></div>
+
+<p>So how does the actual SSL Encryption work?  Actually, its somewhat related to the idea of having a physical key to unlock the door to your house.  Behind the scenes, when a server sends you data (or vice versa), they are also sending you  a ‘public’ key.  The ‘public’ key is linked with a ‘private’ key that only the server has access to.  The data sent is encrypted using the private key, but only the recipient with the valid ‘public’ key can decrypt the data.  If a ‘man in the middle’ were to receive the data being sent without having the key, they would only be able to see gibberish.  Vice versa, if you sent data to the server, that data is encrypted with your ‘public’ key, which can only be decrypted with the server’s ‘private’ key.</p>
+
+<p>These days, with just about everything being internet connected (including your fridge), its becoming more and more prudent to be safe online.  If you are intending to build a server, create a website, or even just check email, make sure that SSL Certificates are being utilized.  Trust is an invaluable commodity online, and it makes all the difference with your customers and your business.</p>
+
+</article>
+
+
+
+<section class="tags">
+  <strong>Tags:</strong> <a href="/tag/certificates">certificates</a>,&nbsp;<a href="/tag/SSL">SSL</a>
+</section>
+
+
+
+<section class="rss">
+  <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+</section>
+
+<section class="share">
+  <span>Share: </span>
+  
+    
+    
+      <a href="//twitter.com/share?text=On+Certificates&url=%2Ftech%2F2014%2F05%2F11%2Fon-certificates.html&via=mikemuir"
+        onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
+        <i class="fa fa-twitter-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+      <a href="//www.facebook.com/sharer.php?t=On+Certificates&u=%2Ftech%2F2014%2F05%2F11%2Fon-certificates.html"
+        onclick="window.open(this.href, 'facebook-share', 'width=550,height=255');return false;">
+        <i class="fa fa-facebook-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+      <a href="//www.linkedin.com/shareArticle?mini=true&url=%2Ftech%2F2014%2F05%2F11%2Fon-certificates.html"
+        onclick="window.open(this.href, 'linkedin-share', 'width=550,height=255');return false;">
+        <i class="fa fa-linkedin-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      <a href="//plus.google.com/share?title=On+Certificates&url=%2Ftech%2F2014%2F05%2F11%2Fon-certificates.html"
+        onclick="window.open(this.href, 'google-plus-share', 'width=550,height=255');return false;">
+        <i class="fa fa-google-plus-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+      <a href="//www.pinterest.com/pin/create/button/?description=On+Certificates&url=%2Ftech%2F2014%2F05%2F11%2Fon-certificates.html&media=/assets/header_image.jpg"
+        onclick="window.open(this.href, 'pinterest-share', 'width=550,height=255');return false;">
+        <i class="fa fa-pinterest-square fa-lg"></i>
+      </a>
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('/tech/2014/05/11/on-certificates.html') + '&title=On Certificates'; return false">
+        <i class="fa fa-reddit-square fa-lg"></i>
+      </a>
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+</section>
+
+
+
+
+</div>
+</div>
+
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h3 class="footer-heading">MuirSandwich</h3>
+
+    <div class="site-navigation">
+
+      <p><strong>Site Map</strong></p>
+      <ul class="pages">
+				
+	
+	<li class="nav-link"><a href="/about/">About</a>
+	
+
+	
+
+	
+
+	
+	<li class="nav-link"><a href="/posts/">Posts</a>
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+      </ul>
+    </div>
+
+    <div class="site-contact">
+
+      <p><strong>Contact</strong></p>
+      <ul class="social-media-list">
+        <li>
+          <a href="mailto:mike@muirsandwich.com">
+            <i class="fa fa-envelope-o"></i>
+            <span class="username">mike@muirsandwich.com</span>
+          </a>
+        </li>
+
+        
+          
+          <li>
+            <a href="https://twitter.com/mikemuir" title="Follow me on Twitter">
+              <i class="fa fa-twitter"></i>
+              <span class="username">mikemuir</span>
+            </a>
+          </li>
+          
+        
+          
+        
+          
+          <li>
+            <a href="https://github.com/mikemuir" title="Fork me on GitHub">
+              <i class="fa fa-github"></i>
+              <span class="username">mikemuir</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="www.linkedin.com/in/mikemuir1" title="Connect with me on LinkedIn">
+              <i class="fa fa-linkedin"></i>
+              <span class="username">Mike Muir</span>
+            </a>
+          </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+
+      </ul>
+    </div>
+
+    <div class="site-signature">
+      <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+      <p class="text">A place to dump random stuff.
+</p>
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- Scripts -->
+<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox.min.js"></script>
+<script src="//unpkg.com/popper.js@1"></script>
+<script src="//unpkg.com/tippy.js@5"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  // Default syntax highlighting
+  hljs.initHighlightingOnLoad();
+
+  // Header
+  var menuToggle = $('#js-mobile-menu').unbind();
+  $('#js-navigation-menu').removeClass("show");
+  menuToggle.on('click', function(e) {
+    e.preventDefault();
+    $('#js-navigation-menu').slideToggle(function(){
+      if($('#js-navigation-menu').is(':hidden')) {
+        $('#js-navigation-menu').removeAttr('style');
+      }
+    });
+  });
+
+	// Enable tooltips via Tippy.js
+	if (Array.isArray(window.tooltips)) {
+		window.tooltips.forEach(function(tooltip) {
+			var selector = tooltip[0];
+			var config = tooltip[1];
+			tippy(selector, config);
+		})
+	}
+});
+
+</script>
+
+
+
+
+
+
+  </body>
+
+</html>

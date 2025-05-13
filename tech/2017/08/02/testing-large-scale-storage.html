@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Testing Large Scale Storage</title>
+  <meta name="description" content="This post originally appeared on my Squarespace blog. Reformatted for clarity.">
+  
+  <meta name="author" content="Mike Muir">
+  <meta name="copyright" content="&copy; Mike Muir 2025">
+  
+
+  <!-- External libraries -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/monokai-sublime.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css">
+
+  <!-- Favicon and other icons (made with http://www.favicon-generator.org/) -->
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  
+  <!-- Facebook OGP cards -->
+  <meta property="og:description" content="This post originally appeared on my Squarespace blog. Reformatted for clarity." />
+  <meta property="og:url" content="/tech/2017/08/02/testing-large-scale-storage.html">
+  <meta property="og:site_name" content="MuirSandwich" />
+  <meta property="og:title" content="Testing Large Scale Storage" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/assets/logo.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="612" />
+  <meta property="og:image:height" content="605" />
+  
+
+  
+  <!-- Twitter: card tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Testing Large Scale Storage">
+  <meta name="twitter:description" content="This post originally appeared on my Squarespace blog. Reformatted for clarity.">
+  <meta name="twitter:image" content="/assets/logo.png">
+  <meta name="twitter:url" content="/tech/2017/08/02/testing-large-scale-storage.html">
+  
+
+  
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="/tech/2017/08/02/testing-large-scale-storage.html">
+	<link rel="alternate" type="application/rss+xml" title="MuirSandwich" href="/feed.xml" />
+	
+	<!-- Tooltips -->
+	<script type="text/javascript">
+		window.tooltips = []
+	</script>
+</head>
+
+
+  <body>
+
+    <header class="navigation" role="banner">
+  <div class="navigation-wrapper">
+    <a href="/" class="logo">
+      
+      <img src="/assets/logo.png" alt="MuirSandwich">
+      
+    </a>
+    <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <nav role="navigation">
+      <ul id="js-navigation-menu" class="navigation-menu show">
+				
+	
+	<li class="nav-link"><a href="/about/">About</a>
+	
+
+	
+
+	
+
+	
+	<li class="nav-link"><a href="/posts/">Posts</a>
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+        <div class="post">
+
+<div class="post-header-container " >
+  <div class="scrim ">
+    <header class="post-header">
+      <h1 class="title">Testing Large Scale Storage</h1>
+      <p class="info">by <strong>Mike Muir</strong></p>
+    </header>
+  </div>
+</div>
+
+<div class="wrapper">
+
+ <span class="page-divider">
+  <span class="one"></span>
+  <span class="two"></span>
+</span>
+ 
+
+<section class="post-meta">
+  <div class="post-date">August 2, 2017</div>
+  <div class="post-categories">
+  in 
+    
+    <a href="/category/Tech">Tech</a>
+    
+  
+  </div>
+</section>
+
+<article class="post-content">
+  <p><em>This post originally appeared on my Squarespace blog. Reformatted for clarity.</em></p>
+
+<p>I’ve recently had the pleasure of testing a few large scale storage systems and my co-worker and I needed to come up with a number of tests to determine their overall performance when it comes to Macs.  These tests I’ve used in the past give a very good overall idea of any platform you are testing:</p>
+
+<p>(Hint) Use a high performing system with an SSD in order to avoid local performance bottlenecks.</p>
+
+<p><strong>#1 Test Read/Write Speed to the Volume</strong></p>
+
+<p>Determine the various file share protocols the platform can host, then attempt read/write tests across each protocol.  Protocols may include:</p>
+
+<ul>
+  <li>AFP</li>
+  <li>SMB</li>
+  <li>SMB with Packet Signing Disabled (Packet Signing is great for security, but does degrade SMB performance.  See this Apple Support Article: https://support.apple.com/en-us/HT205926)</li>
+  <li>CIFS</li>
+  <li>NFS</li>
+</ul>
+
+<p>I use the BlackMagic Disk Speed Test available from the Mac App Store: https://itunes.apple.com/us/app/blackmagic-disk-speed-test/id425264550?mt=12</p>
+
+<p>…then document the results for each protocol in turn.</p>
+
+<p><strong>#2 RSYNC Speed Tests.</strong></p>
+
+<p>We use this test in order to determine the real world performance of transferring data, between individual LARGE files or thousands of SMALL files, as write performance degrades when having to transfer many small files.</p>
+
+<ul>
+  <li>First, from your test system, create a folder, ‘cd’ to said folder, then generate 10,000 1MB files via the command:</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>for i in {1..10000}; do dd if=/dev/urandom bs=10000 count=100 of=file$i; done
+</code></pre></div></div>
+
+<ul>
+  <li>Secondly, create a separate folder, ‘cd’ to said folder, then create one large 10Gb file via:</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkfile -n 10g /Folder_Path/10gFile
+</code></pre></div></div>
+
+<ul>
+  <li>Once these files are created, use RSYNC to transfer the data once for the small files, and once for the large file to the destination:</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rsync -a --progress --stats --human-readable [source] [dest]
+</code></pre></div></div>
+
+<p>Once transferred, document the results of the RSYNC to get real world speeds.  You can try this off of the various protocols as well if need be.</p>
+
+<p><strong>#3 Finder Display Performance</strong></p>
+
+<p>What most people don’t know is that before you actually see items in a folder, the Mac filesystem first iterates every item in it so it knows WHAT to display, as well as HOW.  Finder will seem like its is unresponsive when trying to iterate those items, and you can test the Platform to see how fast Finder can access it to iterate all of the items.</p>
+
+<ul>
+  <li>Simply get a timer on your phone, navigate to the parent folder of the Folder that has the thousands of small files.</li>
+  <li>Change your Finder view to Icon view.</li>
+  <li>When ready, open the thousands of files folder while simultaneously starting the timer.</li>
+  <li>Eyeball when Finder actually displays the items, and stop the timer.  Record the time it took.</li>
+  <li>Repeat the process for the List view, as well as the Column View, as the views will respond differently.</li>
+</ul>
+
+<p><strong>#4 Trailing Whitespace Management</strong></p>
+
+<p>One of the biggest pain in my ass is the difference between OS X/macOS and Windows in how they deal with spaces at the end of filenames.  A lot of times, file transfer protocols deal with unique characters differently, which can really cause problems depending on which OS access the file.</p>
+
+<ul>
+  <li>Create a new text file with a whitespace at the end in windows on the file share (SMB) called “Testfilewithwhitespace .txt”, then mount the share via AFP on the Mac, and rename the file to “Testfilewithwhitespace “.  A lot of times you will see that Windows completely renames the file to garbled text due to an old feature called Name Mangling.  http://www.oreilly.com/openbook/samba/book/ch05_04.html.</li>
+  <li>You will want to test yourself to see now the platform filesystem deals with trailing whitespaces to learn how it will handle them.</li>
+</ul>
+
+<p><strong>#5 Hidden Files</strong></p>
+
+<p>OS X/macOS can hide files if they are named with a . at the beginning of the filename, eg “.HiddenFile.txt”. You will want to determine how the Platform Filesystem tracks these files.</p>
+
+<p><strong>#6 Authentication Support</strong></p>
+
+<p>Larger organizations are most likely using a Directory system of some type, either Active Directory, Open Directory, OpenLDAP or others.  You will want to determine whether the platform you are testing supports your Directory of choice.</p>
+
+<p><strong>#7 Permissioning Tests</strong></p>
+
+<p>Once you know the support of Directory Authentication, look and see how the Platform deals with permissioning.  Check whether it supports POSIX and/or ACL’s as well as HOW to adjust them.  Test your file share protocols to make sure that permissions are properly followed by the test system.</p>
+
+<p><strong>#8 Microsoft Office Files</strong></p>
+
+<p>Office is notorious for file saving errors related to creating lock files when files are edited directly on the share.  Officially, Microsoft says to copy the file locally, edit it, then copy it back to the file share when done, but you can test this by looking for the ~… temporary lock file that gets created when in the middle of being edited.  Once done editing, the lock file is removed, but there can be errors where the lock file stays after the fact.  Look on your platform to determine how best to remove those files after the fact.  Separately, look for whether the /.TemporaryItems folder gets created at the root of the share.  See this MS forum thread for more info https://social.technet.microsoft.com/Forums/en-US/f0ab739a-a649-45df-b14c-13aacf5b9192/issues-saving-office-2016-for-mac-files-to-a-shared-volume?forum=Office2016forMac.</p>
+
+<p><strong>#9 Test Your Own Business Workflows</strong></p>
+
+<p>Where I work, Adobe files are prevalent, so it behooves us to test various Adobe related workflows like the time it takes to transfer hundreds of JPEG’s, or the time it takes to open multi-gig banner .PSB files directly from the share.</p>
+
+<p>You will know what custom business workflows you might run into, and it would help to test those.</p>
+
+<p><strong>#10 Ultimately, record your own Thoughts and Opinions</strong></p>
+
+<p>Sure, we are dealing with lots of hard data, but it does also help to record your own opinions of the system, so others can get info.  How does this compare to previous platforms you’ve already tested?  How do you feel when working with its admin console?  Are you comfortable with it, or do you feel like there will be a steep learning curve when it comes to its administration?  …etc.</p>
+
+<p>Hopefully these bulletpoints help if/when you ever need them…</p>
+
+</article>
+
+
+
+<section class="tags">
+  <strong>Tags:</strong> <a href="/tag/storage">storage</a>,&nbsp;<a href="/tag/filesystems">filesystems</a>
+</section>
+
+
+
+<section class="rss">
+  <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+</section>
+
+<section class="share">
+  <span>Share: </span>
+  
+    
+    
+      <a href="//twitter.com/share?text=Testing+Large+Scale+Storage&url=%2Ftech%2F2017%2F08%2F02%2Ftesting-large-scale-storage.html&via=mikemuir"
+        onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
+        <i class="fa fa-twitter-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+      <a href="//www.facebook.com/sharer.php?t=Testing+Large+Scale+Storage&u=%2Ftech%2F2017%2F08%2F02%2Ftesting-large-scale-storage.html"
+        onclick="window.open(this.href, 'facebook-share', 'width=550,height=255');return false;">
+        <i class="fa fa-facebook-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+      <a href="//www.linkedin.com/shareArticle?mini=true&url=%2Ftech%2F2017%2F08%2F02%2Ftesting-large-scale-storage.html"
+        onclick="window.open(this.href, 'linkedin-share', 'width=550,height=255');return false;">
+        <i class="fa fa-linkedin-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      <a href="//plus.google.com/share?title=Testing+Large+Scale+Storage&url=%2Ftech%2F2017%2F08%2F02%2Ftesting-large-scale-storage.html"
+        onclick="window.open(this.href, 'google-plus-share', 'width=550,height=255');return false;">
+        <i class="fa fa-google-plus-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+      <a href="//www.pinterest.com/pin/create/button/?description=Testing+Large+Scale+Storage&url=%2Ftech%2F2017%2F08%2F02%2Ftesting-large-scale-storage.html&media=/assets/header_image.jpg"
+        onclick="window.open(this.href, 'pinterest-share', 'width=550,height=255');return false;">
+        <i class="fa fa-pinterest-square fa-lg"></i>
+      </a>
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('/tech/2017/08/02/testing-large-scale-storage.html') + '&title=Testing Large Scale Storage'; return false">
+        <i class="fa fa-reddit-square fa-lg"></i>
+      </a>
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+</section>
+
+
+
+
+</div>
+</div>
+
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h3 class="footer-heading">MuirSandwich</h3>
+
+    <div class="site-navigation">
+
+      <p><strong>Site Map</strong></p>
+      <ul class="pages">
+				
+	
+	<li class="nav-link"><a href="/about/">About</a>
+	
+
+	
+
+	
+
+	
+	<li class="nav-link"><a href="/posts/">Posts</a>
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+      </ul>
+    </div>
+
+    <div class="site-contact">
+
+      <p><strong>Contact</strong></p>
+      <ul class="social-media-list">
+        <li>
+          <a href="mailto:mike@muirsandwich.com">
+            <i class="fa fa-envelope-o"></i>
+            <span class="username">mike@muirsandwich.com</span>
+          </a>
+        </li>
+
+        
+          
+          <li>
+            <a href="https://twitter.com/mikemuir" title="Follow me on Twitter">
+              <i class="fa fa-twitter"></i>
+              <span class="username">mikemuir</span>
+            </a>
+          </li>
+          
+        
+          
+        
+          
+          <li>
+            <a href="https://github.com/mikemuir" title="Fork me on GitHub">
+              <i class="fa fa-github"></i>
+              <span class="username">mikemuir</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="www.linkedin.com/in/mikemuir1" title="Connect with me on LinkedIn">
+              <i class="fa fa-linkedin"></i>
+              <span class="username">Mike Muir</span>
+            </a>
+          </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+
+      </ul>
+    </div>
+
+    <div class="site-signature">
+      <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+      <p class="text">A place to dump random stuff.
+</p>
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- Scripts -->
+<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox.min.js"></script>
+<script src="//unpkg.com/popper.js@1"></script>
+<script src="//unpkg.com/tippy.js@5"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  // Default syntax highlighting
+  hljs.initHighlightingOnLoad();
+
+  // Header
+  var menuToggle = $('#js-mobile-menu').unbind();
+  $('#js-navigation-menu').removeClass("show");
+  menuToggle.on('click', function(e) {
+    e.preventDefault();
+    $('#js-navigation-menu').slideToggle(function(){
+      if($('#js-navigation-menu').is(':hidden')) {
+        $('#js-navigation-menu').removeAttr('style');
+      }
+    });
+  });
+
+	// Enable tooltips via Tippy.js
+	if (Array.isArray(window.tooltips)) {
+		window.tooltips.forEach(function(tooltip) {
+			var selector = tooltip[0];
+			var config = tooltip[1];
+			tippy(selector, config);
+		})
+	}
+});
+
+</script>
+
+
+
+
+
+
+  </body>
+
+</html>
