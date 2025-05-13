@@ -6,24 +6,9 @@
 </description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 13 May 2025 23:48:15 +0000</pubDate>
-    <lastBuildDate>Tue, 13 May 2025 23:48:15 +0000</lastBuildDate>
+    <pubDate>Tue, 13 May 2025 23:50:13 +0000</pubDate>
+    <lastBuildDate>Tue, 13 May 2025 23:50:13 +0000</lastBuildDate>
     <generator>Jekyll v3.10.0</generator>
-    
-      <item>
-        <title>On Certificates</title>
-        <description>&lt;p&gt;Purely a test.&lt;/p&gt;
-</description>
-        <pubDate>Tue, 13 May 2025 21:37:14 +0000</pubDate>
-        <link>/tech/2025/05/13/TEST.html</link>
-        <guid isPermaLink="true">/tech/2025/05/13/TEST.html</guid>
-        
-        <category>test</category>
-        
-        
-        <category>Tech</category>
-        
-      </item>
     
       <item>
         <title>SSH Keys in macOS</title>
@@ -171,6 +156,24 @@
         <category>apple</category>
         
         <category>notes</category>
+        
+        
+        <category>Tech</category>
+        
+      </item>
+    
+      <item>
+        <title>Automating a Managed Service Deployment</title>
+        <description>&lt;p&gt;&lt;em&gt;This post originally appeared on my Squarespace blog. Reformatted for clarity.&lt;/em&gt;&lt;/p&gt; &lt;p&gt;Beware: long winded tech post coming up…&lt;/p&gt; &lt;p&gt;Working for a company that deals in managed services makes life interesting...</description>
+        <pubDate>Wed, 06 Apr 2016 16:46:13 +0000</pubDate>
+        <link>/tech/2016/04/06/automating-a-managed-service-deployment.html</link>
+        <guid isPermaLink="true">/tech/2016/04/06/automating-a-managed-service-deployment.html</guid>
+        
+        <category>deployment</category>
+        
+        <category>apple</category>
+        
+        <category>watchmanmonitoring</category>
         
         
         <category>Tech</category>
