@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Automating a Managed Service Deployment</title>
+  <meta name="description" content="This post originally appeared on my Squarespace blog. Reformatted for clarity.">
+  
+  <meta name="author" content="Mike Muir">
+  <meta name="copyright" content="&copy; Mike Muir 2025">
+  
+
+  <!-- External libraries -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/monokai-sublime.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css">
+
+  <!-- Favicon and other icons (made with http://www.favicon-generator.org/) -->
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  
+  <!-- Facebook OGP cards -->
+  <meta property="og:description" content="This post originally appeared on my Squarespace blog. Reformatted for clarity." />
+  <meta property="og:url" content="http://localhost:4000/tech/2016/04/06/automating-a-managed-service-deployment.html">
+  <meta property="og:site_name" content="MuirSandwich" />
+  <meta property="og:title" content="Automating a Managed Service Deployment" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://localhost:4000/assets/logo.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="612" />
+  <meta property="og:image:height" content="605" />
+  
+
+  
+  <!-- Twitter: card tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Automating a Managed Service Deployment">
+  <meta name="twitter:description" content="This post originally appeared on my Squarespace blog. Reformatted for clarity.">
+  <meta name="twitter:image" content="http://localhost:4000/assets/logo.png">
+  <meta name="twitter:url" content="http://localhost:4000/tech/2016/04/06/automating-a-managed-service-deployment.html">
+  
+
+  
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/tech/2016/04/06/automating-a-managed-service-deployment.html">
+	<link rel="alternate" type="application/rss+xml" title="MuirSandwich" href="http://localhost:4000/feed.xml" />
+	
+	<!-- Tooltips -->
+	<script type="text/javascript">
+		window.tooltips = []
+	</script>
+</head>
+
+
+  <body>
+
+    <header class="navigation" role="banner">
+  <div class="navigation-wrapper">
+    <a href="/" class="logo">
+      
+      <img src="/assets/logo.png" alt="MuirSandwich">
+      
+    </a>
+    <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <nav role="navigation">
+      <ul id="js-navigation-menu" class="navigation-menu show">
+				
+	
+	<li class="nav-link"><a href="/about/">About</a>
+	
+
+	
+
+	
+
+	
+	<li class="nav-link"><a href="/posts/">Posts</a>
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+        <div class="post">
+
+<div class="post-header-container " >
+  <div class="scrim ">
+    <header class="post-header">
+      <h1 class="title">Automating a Managed Service Deployment</h1>
+      <p class="info">by <strong>Mike Muir</strong></p>
+    </header>
+  </div>
+</div>
+
+<div class="wrapper">
+
+ <span class="page-divider">
+  <span class="one"></span>
+  <span class="two"></span>
+</span>
+ 
+
+<section class="post-meta">
+  <div class="post-date">April 6, 2016</div>
+  <div class="post-categories">
+  in 
+    
+    <a href="/category/Tech">Tech</a>
+    
+  
+  </div>
+</section>
+
+<article class="post-content">
+  <p><em>This post originally appeared on my Squarespace blog. Reformatted for clarity.</em></p>
+
+<p>Beware: long winded tech post coming up…</p>
+
+<p>Working for a company that deals in managed services makes life interesting when a new customer comes calling.  Naturally, we want to do the best we can for whoever asks us for help, but that usually involves juggling multiple specialized services that all focus on specific tasks.  Services such as Watchman Monitoring, Gruntwork from Mac-MSP(now part of MAX Remote Management), and MDM management from any number of companies have become indispensable, and we want to get them on every computer we can.  The problem comes from how to get all of those individualized services onto a ‘new’ computer that has come under our purview.</p>
+
+<p>For a new computer, we normally want to add (at a minimum) the following to every computer we manage:</p>
+
+<ul>
+  <li>A local ‘CR Administrator’ admin account</li>
+  <li>Access via Remote Management and SSH</li>
+  <li>Watchman Monitoring</li>
+  <li>Gruntwork</li>
+</ul>
+
+<p>Optional pieces include:</p>
+
+<ul>
+  <li>Bomgar (for secure Remote Access)</li>
+  <li>MDM management of choice: Right now we are starting to use FileWave.</li>
+</ul>
+
+<p>We’ve seen if we try to install all of this on a single computer, it can take ~5-10 minutes per computer.  Then add time for making sure you have all the correct installers.  Then add time to juggle kicking the user off the computer for that time.  Then add time to make sure all the installers properly installed.  Then multiply for all computers you need to touch….it adds up.  All the more reason to automate this process.</p>
+
+<p>We ended up going the route of using both shell scripting and then remote installation after the fact w/ FileWave.  So, we scripted the installation of the cradmin account, ARD and SSH access, and the installation of the FileWave client.  Afterwards, FileWave automatically installs the Watchman Monitoring agent, the Gruntwork agent, and the Bomgar agent after we move the respective computer into their assigned Client Group in FileWave.</p>
+
+<p><strong>Pre-Work:  Create a public web server for hosting flat files for download</strong></p>
+
+<p>We needed a central repository to download all of these various installers, and ended up deciding on Amazon Web Services’ S3 service.  It is able to store all of our necessary packages and dmg’s needed for install (on the cheap), so we store everything there.</p>
+
+<p><strong>Part 1: Creating the necessary ‘CR Administrator’ local admin account</strong></p>
+
+<p>Easily done by using CreateUserPkg, an application that will generate a pkg installer for creation of any local user account you specify.   We specify admin rights, our company’s logo, and a UID less than 500, to keep it hidden from the login window for most of our customers.</p>
+
+<p><strong>Part 2: Scripting installation of cradmin, access to ARD and SSH, and FileWave installation</strong></p>
+
+<p>Once the cradmin installer is generated and uploaded to your public web server, do the same for the FileWave installer.  Afterwards, we wrote a script that downloads the cradmin installer to a hidden directory, installed, then removed.  Once installed, some commands are run to give cradmin Apple Remote Management and SSH access.  Finally, the FileWave installer (which has been customized for our specific settings) is taken care of the same way as cradmin: download the FileWave installer to a hidden directory, installed, and the remove it.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c">#!/bin/bash</span>
+<span class="c"># Deploy cradmin, ARD and SSH access for cradmin, and the FileWave client.</span>
+
+<span class="c"># CRADMIN</span>
+<span class="c">###Install CR Administrator account</span>
+<span class="c"># Part 1: Download cradmin installer from AWS instance to /tmp.</span>
+/usr/bin/curl <span class="o">[</span>CRADMIN URL TO DOWNLOAD FROM] <span class="o">&gt;</span> /tmp/create_cradmin_kala-1.1.pkg
+<span class="c"># Part 2: Install then remove package</span>
+/usr/sbin/installer <span class="nt">-target</span> / <span class="nt">-pkg</span> /tmp/create_cradmin_kala-1.1.pkg
+/bin/rm /tmp/create_cradmin_kala-1.1.pkg
+
+<span class="c">###Enable ARD and SSH for CRADMIN user</span>
+<span class="c">#Enable ARD for Specific Users</span>
+/System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart <span class="nt">-configure</span> <span class="nt">-allowAccessFor</span> <span class="nt">-specifiedUsers</span>
+<span class="c">#Enable ARD Agent for CRADMIN</span>
+/System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart <span class="nt">-activate</span> <span class="nt">-configure</span> <span class="nt">-access</span> <span class="nt">-on</span> <span class="nt">-users</span> cradmin <span class="nt">-privs</span> <span class="nt">-all</span> <span class="nt">-restart</span> <span class="nt">-agent</span> <span class="nt">-menu</span>
+<span class="c">#Enable SSH</span>
+systemsetup <span class="nt">-setremotelogin</span> on
+<span class="c">#Create SSH Group</span>
+dseditgroup <span class="nt">-o</span> create <span class="nt">-q</span> com.apple.access_ssh
+<span class="c">#Add CRADMIN to SSH Group</span>
+dseditgroup <span class="nt">-o</span> edit <span class="nt">-a</span> cradmin <span class="nt">-t</span> user com.apple.access_ssh
+
+<span class="c">###Install FileWave Custom Installer</span>
+<span class="c"># Part 1: Download FW installer from AWS instance to /tmp.</span>
+/usr/bin/curl <span class="o">[</span>FILEWAVE URL TO DOWNLOAD FROM] <span class="o">&gt;</span> /tmp/FileWaveClient10.1.1_fw.crtg.io.pkg
+<span class="c"># Part 2: Install then remove package.</span>
+/usr/sbin/installer <span class="nt">-target</span> / <span class="nt">-pkg</span> /tmp/FileWaveClient10.1.1_fw.crtg.io.pkg
+/bin/rm /tmp/FileWaveClient10.1.1_fw.crtg.io.pkg</code></pre></figure>
+
+<p><strong>Part 3: Use FileWave to install Watchman Monitoring, Gruntwork and Bomgar</strong></p>
+
+<p>Now that we have the custom FileWave client installed, its already been enrolled into our system, so we can have it do the rest of the work for us.  In FileWave, we created a Client Group for all of the computers we are enrolling, so we can mass deploy instead of individually.  We also created Fileset of all the necessary installers, in this case, the individual pkgs uploaded to the FileWave server for install, customized for our clients preferences/name.</p>
+
+<p>Once the FileSet is complete, we then associate the Client Group to the Fileset.  This way, when the client checks in to the FileWave server, they will see they have applications that need install, download the 3 installers, and install them, all without needing the extra hands on massaging.</p>
+
+<p>Sure, we could script absolutely everything into a single installer to get it all taken care of, but we split it up this way for a few reasons:</p>
+
+<ul>
+  <li>Ease of quick installation.  The initial installation of cradmin/ARD/SSH/FileWave is done by building the shell script into a single pkg installer that anyone can trigger if they have the existing admin rights.  This way, we don’t even need to be hands on with the computer!  We could just email the installer or a download link to a new customer, and they can install it themselves.  All thats needed on our part is to move the client into the respective Client Group in FileWave after the fact.</li>
+  <li>Make sure that there aren’t any hiccups w/ the FileWave Client not being able to talk to our FileWave server.  If we notice that the client hasn’t enrolled in the server after a few minutes, we know there is probably some networking issue we need to tackle.</li>
+  <li>Im not a master at writing scripts, so using FileWave makes it easy, especially when juggling multiple hundreds of computers.  Time is a luxury :)</li>
+</ul>
+
+<p>Naturally, we’ve tweaked this to make it work for us, but I would love to hear of different processes that others might have put to use (if anyone reads this :D )</p>
+
+</article>
+
+
+
+<section class="tags">
+  <strong>Tags:</strong> <a href="/tag/deployment">deployment</a>,&nbsp;<a href="/tag/apple">apple</a>,&nbsp;<a href="/tag/watchmanmonitoring">watchmanmonitoring</a>
+</section>
+
+
+
+<section class="rss">
+  <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+</section>
+
+<section class="share">
+  <span>Share: </span>
+  
+    
+    
+      <a href="//twitter.com/share?text=Automating+a+Managed+Service+Deployment&url=http%3A%2F%2Flocalhost%3A4000%2Ftech%2F2016%2F04%2F06%2Fautomating-a-managed-service-deployment.html&via=mikemuir"
+        onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
+        <i class="fa fa-twitter-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+      <a href="//www.facebook.com/sharer.php?t=Automating+a+Managed+Service+Deployment&u=http%3A%2F%2Flocalhost%3A4000%2Ftech%2F2016%2F04%2F06%2Fautomating-a-managed-service-deployment.html"
+        onclick="window.open(this.href, 'facebook-share', 'width=550,height=255');return false;">
+        <i class="fa fa-facebook-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+      <a href="//www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Ftech%2F2016%2F04%2F06%2Fautomating-a-managed-service-deployment.html"
+        onclick="window.open(this.href, 'linkedin-share', 'width=550,height=255');return false;">
+        <i class="fa fa-linkedin-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      <a href="//plus.google.com/share?title=Automating+a+Managed+Service+Deployment&url=http%3A%2F%2Flocalhost%3A4000%2Ftech%2F2016%2F04%2F06%2Fautomating-a-managed-service-deployment.html"
+        onclick="window.open(this.href, 'google-plus-share', 'width=550,height=255');return false;">
+        <i class="fa fa-google-plus-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+      <a href="//www.pinterest.com/pin/create/button/?description=Automating+a+Managed+Service+Deployment&url=http%3A%2F%2Flocalhost%3A4000%2Ftech%2F2016%2F04%2F06%2Fautomating-a-managed-service-deployment.html&media=http://localhost:4000/assets/header_image.jpg"
+        onclick="window.open(this.href, 'pinterest-share', 'width=550,height=255');return false;">
+        <i class="fa fa-pinterest-square fa-lg"></i>
+      </a>
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('http://localhost:4000/tech/2016/04/06/automating-a-managed-service-deployment.html') + '&title=Automating a Managed Service Deployment'; return false">
+        <i class="fa fa-reddit-square fa-lg"></i>
+      </a>
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+</section>
+
+
+
+
+</div>
+</div>
+
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h3 class="footer-heading">MuirSandwich</h3>
+
+    <div class="site-navigation">
+
+      <p><strong>Site Map</strong></p>
+      <ul class="pages">
+				
+	
+	<li class="nav-link"><a href="/about/">About</a>
+	
+
+	
+
+	
+
+	
+	<li class="nav-link"><a href="/posts/">Posts</a>
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+      </ul>
+    </div>
+
+    <div class="site-contact">
+
+      <p><strong>Contact</strong></p>
+      <ul class="social-media-list">
+        <li>
+          <a href="mailto:mike@muirsandwich.com">
+            <i class="fa fa-envelope-o"></i>
+            <span class="username">mike@muirsandwich.com</span>
+          </a>
+        </li>
+
+        
+          
+          <li>
+            <a href="https://twitter.com/mikemuir" title="Follow me on Twitter">
+              <i class="fa fa-twitter"></i>
+              <span class="username">mikemuir</span>
+            </a>
+          </li>
+          
+        
+          
+        
+          
+          <li>
+            <a href="https://github.com/mikemuir" title="Fork me on GitHub">
+              <i class="fa fa-github"></i>
+              <span class="username">mikemuir</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="www.linkedin.com/in/mikemuir1" title="Connect with me on LinkedIn">
+              <i class="fa fa-linkedin"></i>
+              <span class="username">Mike Muir</span>
+            </a>
+          </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+
+      </ul>
+    </div>
+
+    <div class="site-signature">
+      <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+      <p class="text">A place to dump random stuff.
+</p>
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- Scripts -->
+<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox.min.js"></script>
+<script src="//unpkg.com/popper.js@1"></script>
+<script src="//unpkg.com/tippy.js@5"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  // Default syntax highlighting
+  hljs.initHighlightingOnLoad();
+
+  // Header
+  var menuToggle = $('#js-mobile-menu').unbind();
+  $('#js-navigation-menu').removeClass("show");
+  menuToggle.on('click', function(e) {
+    e.preventDefault();
+    $('#js-navigation-menu').slideToggle(function(){
+      if($('#js-navigation-menu').is(':hidden')) {
+        $('#js-navigation-menu').removeAttr('style');
+      }
+    });
+  });
+
+	// Enable tooltips via Tippy.js
+	if (Array.isArray(window.tooltips)) {
+		window.tooltips.forEach(function(tooltip) {
+			var selector = tooltip[0];
+			var config = tooltip[1];
+			tippy(selector, config);
+		})
+	}
+});
+
+</script>
+
+
+
+
+
+
+  </body>
+
+</html>
