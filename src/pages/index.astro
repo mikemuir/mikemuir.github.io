@@ -1,0 +1,37 @@
+---
+import Base from "../layouts/Base.astro";
+import PostList from "../components/PostList.astro";
+import { getPosts } from "../lib/posts";
+import { ARCHIVE_BEFORE } from "../consts";
+
+const posts = await getPosts();
+const recent = posts.filter((p) => p.data.date >= ARCHIVE_BEFORE);
+const archive = posts.filter((p) => p.data.date < ARCHIVE_BEFORE);
+---
+<Base>
+  <section class="intro">
+    <h1>Hi, I'm Mike.</h1>
+    <p>
+      I run IT Operations at a fintech company. Outside work it's my daughter, soccer and kickboxing,
+      3D printing and CNC, guitar, and sim racing. This is where I write things down so I don't have to
+      figure them out twice.
+    </p>
+  </section>
+
+  {recent.length > 0 && (
+    <section>
+      <h2>Recent</h2>
+      <PostList posts={recent.slice(0, 10)} showExcerpt />
+    </section>
+  )}
+
+  <section>
+    <h2>From the archive</h2>
+    <p class="muted">
+      Posts from 2014–2017, mostly Mac admin notes from the DeployStudio and OS X Server days. Kept
+      for reference; plenty of it is out of date.
+    </p>
+    <PostList posts={archive.slice(0, 8)} />
+    <p><a href="/posts/">All posts →</a></p>
+  </section>
+</Base>

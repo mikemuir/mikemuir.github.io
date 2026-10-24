@@ -1,0 +1,26 @@
+---
+import { Image } from "astro:assets";
+import Base from "../layouts/Base.astro";
+import headshot from "../assets/headshot.png";
+import { LINKS } from "../consts";
+---
+<Base title="About" description="About Mike Muir.">
+  <h1>About</h1>
+  <div class="about">
+    <Image src={headshot} alt="Mike Muir" width={160} height={160} class="avatar" />
+    <div class="prose">
+      <p>
+        I'm Mike Muir, Senior Manager of IT Operations at Acorns. I've spent my career in IT, from Mac
+        admin and managed services to running enterprise IT for a fintech.
+      </p>
+      <p>
+        Outside work: dad first, then soccer and kickboxing, 3D printing and CNC, guitar, sim racing, and
+        more progressive and technical death metal than is probably healthy.
+      </p>
+      <p>
+        This site started on Squarespace in 2014. The old posts are still here, mostly for posterity.
+      </p>
+      <p>Elsewhere: {LINKS.map((l, i) => <><a href={l.url} rel="me">{l.name}</a>{i < LINKS.length - 1 ? ", " : ""}</>)}.</p>
+    </div>
+  </div>
+</Base>

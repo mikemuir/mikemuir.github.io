@@ -1,0 +1,37 @@
+---
+import { render } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import { getPosts, excerpt, formatDate, type Post } from "../../lib/posts";
+import { ARCHIVE_BEFORE } from "../../consts";
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props as { post: Post };
+const { Content } = await render(post);
+const { title, date, tags } = post.data;
+const isArchive = date < ARCHIVE_BEFORE;
+---
+<Base title={title} description={excerpt(post)} type="article" published={date}>
+  <article class="post">
+    <header>
+      <h1>{title}</h1>
+      <p class="meta">
+        <time datetime={date.toISOString()}>{formatDate(date)}</time>
+        {tags.length > 0 && <span> · {tags.map((t, i) => <><a href={`/tags/${t}/`}>#{t}</a>{i < tags.length - 1 ? " " : ""}</>)}</span>}
+      </p>
+    </header>
+    {isArchive && (
+      <aside class="notice">
+        Archived post from {date.getUTCFullYear()}, originally on my Squarespace blog. Tools and
+        versions mentioned here are likely out of date.
+      </aside>
+    )}
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+  <p><a href="/posts/">← All posts</a></p>
+</Base>
