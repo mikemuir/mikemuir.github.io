@@ -1,8 +1,9 @@
 ---
 title: "Workflow for a quick master image creation and deployment using DeployStudio"
-date: "2015-04-23T19:17:08+00:00"
-category: "Tech"
-tags: ["apple", "deploystudio"]
+pubDatetime: 2015-04-23T19:17:08Z
+description: "DeployStudio has become far and beyond one of the most indispensable tools in my tech arsenal for multiple Macintosh deployments. It makes it incredibly…"
+tags: ["tech", "apple", "deploystudio"]
+archived: true
 ---
 DeployStudio has become far and beyond one of the most indispensable tools in my tech arsenal for multiple Macintosh deployments. It makes it incredibly easy to take a master image you've created for your office or a customer, and deploy it out to multiple systems over your network all while automating Computer Names, extra package installations, partitioning, Boot Camp, and many others...
 

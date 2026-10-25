@@ -1,8 +1,9 @@
 ---
 title: "Creating a PKG from a drag-and-drop DMG"
-date: "2016-12-21T20:13:37+00:00"
-category: "Tech"
-tags: ["apple", "terminal", "packages"]
+pubDatetime: 2016-12-21T20:13:37Z
+description: "Quick Terminal command for those one off applications that need to be deployed via a .pkg installer: For example, if you have EazyDraw 8 currently…"
+tags: ["tech", "apple", "terminal", "packages"]
+archived: true
 ---
 Quick Terminal command for those one off applications that need to be deployed via a .pkg installer:
 

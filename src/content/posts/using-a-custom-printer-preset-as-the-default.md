@@ -1,8 +1,9 @@
 ---
 title: "Using a Custom Printer Preset as the Default"
-date: "2016-12-15T22:26:37+00:00"
-category: "Tech"
-tags: ["apple", "printers", "cups"]
+pubDatetime: 2016-12-15T22:26:37Z
+description: "Ran across a customer who was asking about wanting to use a custom printer preset as the default preset. Normally, OS X doesn't have any setting that you…"
+tags: ["tech", "apple", "printers", "cups"]
+archived: true
 ---
 Ran across a customer who was asking about wanting to use a custom printer preset as the default preset. Normally, OS X doesn't have any setting that you can use to do so, but I ran across a little trick that I still can't find any official documentation on, and yet seems to work.
 

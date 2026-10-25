@@ -1,8 +1,9 @@
 ---
 title: "Retrieving data from the Notes.app"
-date: "2016-11-15T21:24:51+00:00"
-category: "Tech"
-tags: ["apple", "notes"]
+pubDatetime: 2016-11-15T21:24:51Z
+description: "Recently dealt with an issue where a user had notes stored in Notes.app, but randomly lost them all! The problem came up that they were stored 'On My Mac'…"
+tags: ["tech", "apple", "notes"]
+archived: true
 ---
 Recently dealt with an issue where a user had notes stored in Notes.app, but randomly lost them all!  The problem came up that they were stored 'On My Mac' and not synchronizing with a service at all.  As it turns out the data was there, but Apple Notes was not seeing the data behind the scenes.  All the data behind the scenes is stored in a .sqlite database, which does not make it easy to view the data, but there is a fix to retrieve it.
 

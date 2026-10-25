@@ -1,8 +1,9 @@
 ---
 title: "Testing Large Scale Storage"
-date: "2017-08-02T19:21:03+00:00"
-category: "Tech"
-tags: ["storage", "filesystems"]
+pubDatetime: 2017-08-02T19:21:03Z
+description: "I've recently had the pleasure of testing a few large scale storage systems and my co-worker and I needed to come up with a number of tests to determine…"
+tags: ["tech", "storage", "filesystems"]
+archived: true
 ---
 I've recently had the pleasure of testing a few large scale storage systems and my co-worker and I needed to come up with a number of tests to determine their overall performance when it comes to Macs.  These tests I've used in the past give a very good overall idea of any platform you are testing:
 

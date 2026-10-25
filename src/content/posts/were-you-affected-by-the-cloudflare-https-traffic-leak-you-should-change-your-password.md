@@ -1,8 +1,9 @@
 ---
 title: "Were you affected by the CloudFlare HTTPS Traffic Leak?  You should change your password..."
-date: "2017-02-24T21:24:53+00:00"
-category: "Tech"
-tags: ["cloudflare", "dns"]
+pubDatetime: 2017-02-24T21:24:53Z
+description: "CloudFlare is a rather well known web services and security company that MANY public companies use for hosting and website reliability. Unfortunately, it…"
+tags: ["tech", "cloudflare", "dns"]
+archived: true
 ---
 CloudFlare is a rather well known web services and security company that MANY public companies use for hosting and website reliability. Unfortunately, it came to light a day or two ago that a bug existed in their system that allowed private passwords, messages, API keys and other sensitive data to be leaked to random requesters.
 

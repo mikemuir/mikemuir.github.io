@@ -1,8 +1,9 @@
 ---
 title: "Automating a Managed Service Deployment"
-date: "2016-04-06T16:46:13+00:00"
-category: "Tech"
-tags: ["deployment", "apple", "watchmanmonitoring"]
+pubDatetime: 2016-04-06T16:46:13Z
+description: "Beware: long winded tech post coming up... Working for a company that deals in managed services makes life interesting when a new customer comes calling.…"
+tags: ["tech", "deployment", "apple", "watchmanmonitoring"]
+archived: true
 ---
 Beware: long winded tech post coming up...
 

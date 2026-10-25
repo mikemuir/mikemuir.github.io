@@ -1,8 +1,9 @@
 ---
 title: "Troubleshooting Bomgar clients"
-date: "2014-05-12T18:40:02+00:00"
-category: "Tech"
-tags: []
+pubDatetime: 2014-05-12T18:40:02Z
+description: "We use a Bomgar Appliance for remote access for our contract customers. Its a very nice piece of hardware, supplying some nice security for remote access…"
+tags: ["tech"]
+archived: true
 ---
 We use a Bomgar Appliance for remote access for our contract customers.  Its a very nice piece of hardware, supplying some nice security for remote access and management that you dont get in many other systems.  Its expensive, but pretty damn nice in my opinion.
 

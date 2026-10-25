@@ -1,8 +1,9 @@
 ---
 title: "SSH Keys in macOS"
-date: "2017-09-20T18:30:58+00:00"
-category: "Tech"
-tags: ["apple", "ssh", "macos"]
+pubDatetime: 2017-09-20T18:30:58Z
+description: "For security, a number of services may use SSH keys for authentication rather than a standard username/password. Some services include: - SSH - GitHub -…"
+tags: ["tech", "apple", "ssh", "macos"]
+archived: true
 ---
 For security, a number of services may use SSH keys for authentication rather than a standard username/password. Some services include:
 

@@ -1,8 +1,9 @@
 ---
 title: "On Certificates"
-date: "2014-05-11T21:37:14+00:00"
-category: "Tech"
-tags: ["certificates", "ssl"]
+pubDatetime: 2014-05-11T21:37:14Z
+description: "So I wrote this for CR as a piece to explain the basics of Certificates. Obviously, if you've ever attempted to create and embed a certificate into a web…"
+tags: ["tech", "certificates", "ssl"]
+archived: true
 ---
 So I wrote this for CR as a piece to explain the basics of Certificates. Obviously, if you've ever attempted to create and embed a certificate into a web service, its not the easiest thing in the world...
 

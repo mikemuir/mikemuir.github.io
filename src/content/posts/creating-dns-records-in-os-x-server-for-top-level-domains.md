@@ -1,8 +1,9 @@
 ---
 title: "Creating DNS records in OS X Server for top level domains"
-date: "2015-09-11T15:21:51+00:00"
-category: "Tech"
-tags: ["apple", "osxserver", "dns"]
+pubDatetime: 2015-09-11T15:21:51Z
+description: "It is not very common to see this, but if in a rare circumstance you are hosting a zone file in house for your DNS, but it is sharing the same domain as…"
+tags: ["tech", "apple", "osxserver", "dns"]
+archived: true
 ---
 It is not very common to see this, but if in a rare circumstance you are hosting a zone file in house for your DNS, but it is sharing the same domain as your website, you or your employees might be stuck not being able to access your website. Unfortunately, OS X Server does not have a way in the GUI to create a top level DNS record (sometimes seen as an @ record). However, this can still be done via commandline...
 

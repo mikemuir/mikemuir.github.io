@@ -1,0 +1,12 @@
+---
+type Props = { year: number };
+const { year } = Astro.props;
+---
+
+<aside
+  class="border-accent bg-muted/40 mt-6 rounded-r border-s-4 px-4 py-3 text-sm"
+  data-pagefind-ignore
+>
+  Archived post from {year}, originally on my old Squarespace blog. Tools and
+  versions mentioned here are likely out of date.
+</aside>

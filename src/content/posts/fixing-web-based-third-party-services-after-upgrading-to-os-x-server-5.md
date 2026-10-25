@@ -1,8 +1,9 @@
 ---
 title: "Fixing web based third party services after upgrading to OS X Server 5"
-date: "2015-10-08T17:24:16+00:00"
-category: "Tech"
-tags: ["apple", "osxserver"]
+pubDatetime: 2015-10-08T17:24:16Z
+description: "For the most part, Server 5 has been a pleasant upgrade, but there was one rather major change that caused some headaches, especially when third-party web…"
+tags: ["tech", "apple", "osxserver"]
+archived: true
 ---
 For the most part, Server 5 has been a pleasant upgrade, but there was one rather major change that caused some headaches, especially when third-party web services are hosted on it, such as WebHelpDesk, JAMF Casper Suite, anything tomcat, etc...
 

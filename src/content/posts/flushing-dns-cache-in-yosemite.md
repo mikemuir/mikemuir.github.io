@@ -1,8 +1,9 @@
 ---
 title: "Flushing DNS cache in Yosemite"
-date: "2014-09-16T16:44:48+00:00"
-category: "Tech"
-tags: ["apple", "dns", "yosemite"]
+pubDatetime: 2014-09-16T16:44:48Z
+description: "New command to flush DNS caches in OS X Yosemite:"
+tags: ["tech", "apple", "dns", "yosemite"]
+archived: true
 ---
 New command to flush DNS caches in OS X Yosemite:
 

@@ -1,8 +1,9 @@
 ---
 title: "Watchman Monitoring"
-date: "2014-05-13T16:15:21+00:00"
-category: "Tech"
-tags: ["watchmanmonitoring"]
+pubDatetime: 2014-05-13T16:15:21Z
+description: "So anyone who supports Apple or Unix computers REALLY needs to look at using Watchman Monitoring. Its just a tiny client that runs in the background and…"
+tags: ["tech", "watchmanmonitoring"]
+archived: true
 ---
 So anyone who supports Apple or Unix computers REALLY needs to look at using Watchman Monitoring.  Its just a tiny client that runs in the background and periodically phones home to report on the status of *many* services: CrashPlan, Time Machine, HD Failure, RAID status, etc, as well as server services such as OS X Server, Kerio Connect, Daylite Server and more.
 

@@ -1,8 +1,9 @@
 ---
 title: "On becoming a (foster) father..."
-date: "2015-02-28T17:36:29+00:00"
-category: "Life"
-tags: ["dad", "life", "fostering"]
+pubDatetime: 2015-02-28T17:36:29Z
+description: "Life just got much more interesting... Something amazing happened that made me want to actually take some time to write about it. People who know me…"
+tags: ["life", "dad", "fostering"]
+archived: true
 ---
 Life just got much more interesting...
 

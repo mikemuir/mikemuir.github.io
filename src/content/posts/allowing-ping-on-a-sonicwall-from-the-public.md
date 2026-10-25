@@ -1,8 +1,9 @@
 ---
 title: "Allowing Ping on a Sonicwall From the Public"
-date: "2015-12-30T17:42:28+00:00"
-category: "Tech"
-tags: ["networking", "ping", "sonicwall"]
+pubDatetime: 2015-12-30T17:42:28Z
+description: "In case you are using an uptime monitor such as uptimerobot.com, you may want to monitor your primary firewall, in our case a Sonicwall. However, its a…"
+tags: ["tech", "networking", "ping", "sonicwall"]
+archived: true
 ---
 In case you are using an uptime monitor such as uptimerobot.com, you may want to monitor your primary firewall, in our case a Sonicwall. However, its a good practice to not allow the whole of the internet to be able to ping your box.
 

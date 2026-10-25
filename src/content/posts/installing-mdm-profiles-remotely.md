@@ -1,8 +1,9 @@
 ---
 title: "Installing MDM Profiles Remotely"
-date: "2014-08-04T17:39:25+00:00"
-category: "Tech"
-tags: ["apple", "mdm", "profiles"]
+pubDatetime: 2014-08-04T17:39:25Z
+description: "More tech stuff. Say you are managing tens or hundreds of OS X computers, and have a new MDM server in place, but don't want to have to go to each machine…"
+tags: ["tech", "apple", "mdm", "profiles"]
+archived: true
 ---
 More tech stuff.
 

@@ -1,8 +1,9 @@
 ---
 title: "Homebrewing"
-date: "2014-06-16T18:41:17+00:00"
-category: "Life"
-tags: ["beer", "homebrewing"]
+pubDatetime: 2014-06-16T18:41:17Z
+description: "So I ended up getting Silver for an Imperial Stout I had brewed last year in the latest Hangar 24 Homebrew Competition (Hangar 24 Brewery). This is the…"
+tags: ["life", "beer", "homebrewing"]
+archived: true
 ---
 So I ended up getting Silver for an Imperial Stout I had brewed last year in the latest Hangar 24 Homebrew Competition (Hangar 24 Brewery). This is the first competition I entered and was not expecting to get anything other than feedback on the beer, so i'm happy to have gotten it.
 

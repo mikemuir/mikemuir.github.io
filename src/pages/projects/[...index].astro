@@ -1,0 +1,32 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import Main from "@/components/Main.astro";
+import Footer from "@/components/Footer.astro";
+import ProjectSection from "@/components/ProjectSection.astro";
+import { getProjectSections } from "@/utils/projects";
+import config from "@/config";
+
+// Rest param so the page can emit zero paths: /projects/ isn't built at all until
+// there's at least one published project.
+export async function getStaticPaths() {
+  const sections = await getProjectSections();
+  return sections.length > 0
+    ? [{ params: { index: undefined }, props: { sections } }]
+    : [];
+}
+
+const { sections } = Astro.props as {
+  sections: Awaited<ReturnType<typeof getProjectSections>>;
+};
+---
+
+<Layout title={`Projects | ${config.site.title}`}>
+  <Header />
+  <Breadcrumb />
+  <Main pageTitle="Projects" pageDesc="Things I build, fly, and break.">
+    {sections.map(section => <ProjectSection {...section} />)}
+  </Main>
+  <Footer />
+</Layout>

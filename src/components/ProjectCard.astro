@@ -1,0 +1,36 @@
+---
+import { Image } from "astro:assets";
+import { projectUrl, type Project } from "@/utils/projects";
+
+type Props = { project: Project };
+const { project } = Astro.props;
+const { title, description, cover, coverAlt, status } = project.data;
+---
+
+<li class="group">
+  <a
+    href={projectUrl(project.id)}
+    class="border-border hover:border-accent focus-visible:border-accent block h-full overflow-hidden rounded-lg border transition-colors"
+  >
+    <Image
+      src={cover}
+      alt={coverAlt}
+      widths={[400, 800]}
+      sizes="(min-width: 640px) 360px, 100vw"
+      class="aspect-video w-full object-cover"
+    />
+    <div class="p-4">
+      <h3 class="text-accent text-lg font-medium group-hover:underline">
+        {title}
+      </h3>
+      {
+        status !== "active" && (
+          <span class="text-muted-foreground text-xs tracking-wide uppercase">
+            {status}
+          </span>
+        )
+      }
+      <p class="mt-1 text-sm">{description}</p>
+    </div>
+  </a>
+</li>

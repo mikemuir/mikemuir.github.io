@@ -1,0 +1,82 @@
+---
+import { Image } from "astro:assets";
+import { getCollection, render } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import Footer from "@/components/Footer.astro";
+import Card from "@/components/Card.astro";
+import { getSortedPosts } from "@/utils/getSortedPosts";
+import { getProjects, type Project } from "@/utils/projects";
+import { PROJECT_SECTIONS } from "@/site";
+import config from "@/config";
+
+export async function getStaticPaths() {
+  const projects = await getProjects();
+  return projects.map(project => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
+}
+
+type Props = { project: Project };
+const { project } = Astro.props;
+const { title, description, cover, coverAlt, status, section } = project.data;
+const { Content } = await render(project);
+const sectionInfo = PROJECT_SECTIONS.find(s => s.id === section)!;
+
+const posts = getSortedPosts(await getCollection("posts")).filter(
+  p => p.data.project?.id === project.id
+);
+---
+
+<Layout title={`${title} | ${config.site.title}`} description={description}>
+  <Header />
+  <Breadcrumb />
+  <main id="main-content" class="app-layout pb-4" data-pagefind-body>
+    <p class="text-muted-foreground text-sm">
+      <a href={`/projects/#${section}`} class="hover:text-accent"
+        >{sectionInfo.title}</a
+      >
+      · {status}
+    </p>
+    <h1 class="text-accent text-2xl font-bold sm:text-3xl">{title}</h1>
+    <p class="mt-2 italic">{description}</p>
+    <Image
+      src={cover}
+      alt={coverAlt}
+      widths={[720, 1440]}
+      sizes="(min-width: 768px) 720px, 100vw"
+      class="mt-6 w-full rounded-lg"
+    />
+    <article class="app-prose max-w-app mt-8 w-full">
+      <Content />
+    </article>
+    {
+      posts.length > 0 && (
+        <section class="mt-10">
+          <h2 class="text-xl font-semibold">Write-ups</h2>
+          <ul>
+            {posts.map(post => (
+              <Card variant="h3" {...post} />
+            ))}
+          </ul>
+        </section>
+      )
+    }
+    {
+      "link" in sectionInfo && (
+        <p class="mt-8">
+          <a
+            href={sectionInfo.link.url}
+            class="hover:text-accent underline decoration-dashed underline-offset-4"
+            rel="noopener"
+          >
+            {sectionInfo.link.label} →
+          </a>
+        </p>
+      )
+    }
+  </main>
+  <Footer />
+</Layout>

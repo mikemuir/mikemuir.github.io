@@ -1,8 +1,9 @@
 ---
 title: "Verifying the contents of a folder were copied correctly"
-date: "2017-02-23T18:37:25+00:00"
-category: "Tech"
-tags: ["md5", "hash"]
+pubDatetime: 2017-02-23T18:37:25Z
+description: "One of the commands built into OS X is md5, a way to create a simple 'fingerprint' of the contents of the file. The idea is you can verify whether a copy…"
+tags: ["tech", "md5", "hash"]
+archived: true
 ---
 One of the commands built into OS X is md5, a way to create a simple 'fingerprint' of the contents of the file.  The idea is you can verify whether a copy of a file is the same, by making sure the two md5 'fingerprints' are the same.  Execution of the command is simple:
 
