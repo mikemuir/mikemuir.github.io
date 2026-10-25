@@ -2,7 +2,7 @@ import { defineAstroPaperConfig } from "./src/types/config";
 
 export default defineAstroPaperConfig({
   site: {
-    url: "https://mikemuir.github.io/",
+    url: "https://muirsandwich.com/",
     title: "MuirSandwich",
     description: "Mike Muir — IT operations, homelab, 3D printing, drone mapping, and mesh networking.",
     author: "Mike Muir",
