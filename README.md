@@ -34,7 +34,8 @@ Images go in `src/assets/img/` and are referenced as `@/assets/img/name.jpg`.
 ## Projects (hidden until the first one exists)
 
 Copy `src/content/projects/_template.md` to `src/content/projects/<slug>.md` and remove `draft: true`.
-Cover photos go in `src/assets/projects/`. Until at least one non-draft project exists, the Projects
+Cover photos are optional: put one in `src/assets/projects/` and set `cover:`/`coverAlt:`, or leave
+them out for a text-only card. Until at least one non-draft project exists, the Projects
 nav link, the homepage sections, and the `/projects/` page aren't built at all.
 
 Sections and their order, blurbs, and the Etsy link are in `src/site.ts`. A section only appears once it

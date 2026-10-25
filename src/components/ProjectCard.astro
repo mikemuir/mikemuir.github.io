@@ -12,13 +12,17 @@ const { title, description, cover, coverAlt, status } = project.data;
     href={projectUrl(project.id)}
     class="border-border hover:border-accent focus-visible:border-accent block h-full overflow-hidden rounded-lg border transition-colors"
   >
-    <Image
-      src={cover}
-      alt={coverAlt}
-      widths={[400, 800]}
-      sizes="(min-width: 640px) 360px, 100vw"
-      class="aspect-video w-full object-cover"
-    />
+    {
+      cover && (
+        <Image
+          src={cover}
+          alt={coverAlt ?? title}
+          widths={[400, 800]}
+          sizes="(min-width: 640px) 360px, 100vw"
+          class="aspect-video w-full object-cover"
+        />
+      )
+    }
     <div class="p-4">
       <h3 class="text-accent text-lg font-medium group-hover:underline">
         {title}

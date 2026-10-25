@@ -42,13 +42,17 @@ const posts = getSortedPosts(await getCollection("posts")).filter(
     </p>
     <h1 class="text-accent text-2xl font-bold sm:text-3xl">{title}</h1>
     <p class="mt-2 italic">{description}</p>
-    <Image
-      src={cover}
-      alt={coverAlt}
-      widths={[720, 1440]}
-      sizes="(min-width: 768px) 720px, 100vw"
-      class="mt-6 w-full rounded-lg"
-    />
+    {
+      cover && (
+        <Image
+          src={cover}
+          alt={coverAlt ?? title}
+          widths={[720, 1440]}
+          sizes="(min-width: 768px) 720px, 100vw"
+          class="mt-6 w-full rounded-lg"
+        />
+      )
+    }
     <article class="app-prose max-w-app mt-8 w-full">
       <Content />
     </article>
